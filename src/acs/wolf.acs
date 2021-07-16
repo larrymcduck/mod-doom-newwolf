@@ -1,0 +1,181 @@
+#include "zcommon.acs"
+
+#define V_OFFSET	20
+
+int doorActivated[255];
+
+FUNCTION int GetVelocity (int x1, int y1, int z1, int x2, int y2, int z2)
+{
+	int x, y, z, d, r;
+	x = x1 - x2 >> 16;
+	y = y1 - y2 >> 16;
+	z = z1 - z2 >> 16;
+	d = x*x + y*y + z*z + 1 >> 1;
+	while (d > r)
+	{
+		d -= r++;
+	}
+	return r;
+}
+
+// reset door array
+script 999 open
+{
+	int index = 0;
+	while (index < 255)
+	{
+		doorActivated[index] = 0;
+		index++;
+	}
+}
+
+script 998 (void)
+{
+	int x, y, z;
+	
+	if (GetCvar("g_momentum") == 0)
+	{
+		if (GetPlayerInput(-1, INPUT_BUTTONS) & (BT_FORWARD | BT_BACK | BT_MOVELEFT | BT_MOVERIGHT))
+		{
+			Thing_Stop(0);
+			SetActorProperty(0, APROP_Speed, 8.0);
+		}
+	}
+	else
+	{
+		SetActorProperty(0, APROP_Speed, 1.0);
+	}
+	
+	x = GetActorX(0);
+	y = GetActorY(0);
+	z = GetActorZ(0);
+
+	Delay(1);
+		
+	if (GetActorProperty(0, APROP_Health) > 0)
+	{
+		if (GetVelocity(x, y, z, GetActorX(0), GetActorY(0), GetActorZ(0)) == 0 && GetPlayerInput(-1,INPUT_BUTTONS) != BT_ATTACK)
+		{
+			SetActorState(0,"Spawn");
+		}
+	}
+	else
+	{
+		terminate;
+	}
+	
+	restart;
+}
+
+script 997 (void)
+{
+	if (PlayerIsBot(PlayerNumber()))
+	{
+		terminate;
+	}
+
+	HudMessage(s:""; HUDMSG_PLAIN,1,CR_UNTRANSLATED, 160.0, 100.0, 0.1);
+	LocalSetMusic("*");
+	
+	if (GameType() != 0)
+	{
+		terminate;
+	}
+	
+	ACS_ExecuteAlways(998, 0);
+}
+
+script 995 enter
+{
+	ACS_ExecuteAlways(997, 0);
+}
+
+// on respawn, start local music and remove red fade
+script 994 respawn
+{
+	ACS_ExecuteAlways(997, 0);
+}
+
+// on death, stop local music and red screen fade
+SCRIPT 993 DEATH
+{
+	if (PlayerIsBot(PlayerNumber()))
+	{
+		terminate;
+	}
+	
+	LocalSetMusic("");
+	SetHudSize(320,200,0);
+	SetFont("DEATH");
+	HudMessage(s:"A"; HUDMSG_FADEINOUT,1,CR_UNTRANSLATED, 160.0, 100.0, 0x7FFFFFFC, 2.0, 0.2);
+}
+
+//Polyobject Doors
+// po is polyobject id
+// dir is 1 (vertical) or 2 (horizontal)
+// lock is number of lock to check for (coded as 1=gold, 2=silver)
+script 1 (int po, int dir, int lock)
+{
+	if (doorActivated[po] == 1)
+	{
+		terminate;
+	}
+
+	int dirMove, dirEnd, bAccess = 0;	
+
+	if(dir == 1)
+	{
+		dirMove = 192;
+	}
+	else if(dir == 2)
+	{
+		dirMove = 0;
+	}
+
+	if(lock == 1)
+	{
+		if(checkinventory("Key_Gold"))
+		{
+			bAccess = 1;
+		}
+		else
+		{
+			Print(s:"You need the Gold Key to open this door.");
+			activatorsound("doorlocked",127);
+		}
+	}
+	else if(lock == 2)
+	{
+		if(checkinventory("Key_Silver"))
+		{
+			bAccess = 1;
+		}
+		else
+		{
+			Print(s:"You need the Silver Key to open this door.");
+			activatorsound("doorlocked",127);
+		}
+	}
+	else
+	{
+		bAccess = 1;
+	}
+
+	if (bAccess == 1)
+	{
+		doorActivated[po] = 1;
+		
+		activatorsound("dooropen",127);
+		Polyobj_DoorSlide(po,20,dirMove,64, 150);
+		Delay(180);
+		activatorsound("doorclose",127);
+		delay(30);
+		
+		doorActivated[po] = 0;
+	}
+}
+
+script 2 (int pathNode)
+{
+    SetActorState(0,"Patrol");
+}

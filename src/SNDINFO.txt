@@ -1,0 +1,226 @@
+// Enemy Pistol Attack
+enemy/pistol		DSPISTOL
+
+// Guard
+guard/sight 		dsgrunt1
+$random guard/death 	{ guard/death1 guard/death2 guard/death3 guard/death4 guard/death5 guard/death6 }
+guard/pain		DSEMPTY
+guard/active		DSEMPTY
+guard/death1		dsgrunt2
+guard/death2		dsgrunt3
+guard/death3		dsgrunt4
+guard/death4		dsgrunt5
+guard/death5		dsgrunt6
+guard/death6		dsgrunt7
+
+// Dog
+dog/sight		dsdog1
+dog/active		DSEMPTY
+dog/pain		dsdog5
+dog/melee		dsdog2
+dog/death		dsdog3
+
+// SS Nazi
+ss/sight		dsnazi1
+ss/active		DSEMPTY
+ss/pain			DSEMPTY
+ss/death		dsnazi2
+ss/attack		DSNAZIAT
+
+// Mutant
+mutant/sight		DSEMPTY
+mutant/pain		DSEMPTY
+mutant/active		DSEMPTY
+mutant/death		dsmut1
+
+// Officer
+officer/sight		dsoff1
+officer/pain		DSEMPTY
+officer/active		DSEMPTY
+officer/death		dsoff2
+
+// Robed Hitler
+robe/sight		dsrobe1
+robe/active		DSEMPTY
+robe/raiseguns		DSEMPTY
+robe/death		dsrobe2
+robe/attack		dsrobe3
+robe/melee		dsrobe3
+robe/shotx		DSEMPTY
+
+// Hans
+hans/sight		dshans1
+hans/death		dshans3
+hans/attack		dshans2
+hans/active		DSEMPTY
+
+// Dr Schabbs
+dr/sight		dsdrsee
+dr/death		dsdrdie
+dr/active		DSEMPTY
+dr/melee		dsthrow
+dr/attack		dsthrow
+dr/shotx		DSEMPTY
+
+// Hitler
+spider/walk		dshit4
+
+hitler/sight		dshit1
+hitler/active		DSEMPTY
+hitler/death		dshit3
+hitler2/death		dshit2
+hitler/attack		dshans2
+
+// Otto
+otto/sight		dsotto1
+otto/active		DSEMPTY
+otto/death		dsotto2
+otto/hoof		DSEMPTY
+
+// Gretl
+Gretl/sight		dsgret1
+Gretl/death		dsgret2
+Gretl/active		DSEMPTY
+
+// General Fettgesicht
+fett/sight		dsgen1
+fett/active		DSEMPTY
+fett/death		dsgen2
+
+weapons/knife		KNIFE
+weapons/pistol		DSPIST
+weapons/machine		DSMACH
+weapons/chngun		DSCHAIN
+
+doorsecret		DSBDOPN
+dooropenclose		DSDROPCL
+dooropen		DSDOROPN
+doorclose		DSDORCLS
+doorlocked		DSNOWAY
+
+item/ammo		DSAMMO
+
+item/machinegun		GETMACH
+item/chaingun		GETCHAIN
+
+item/food		dshealth
+item/medkit		dshelth2
+item/blood		dsblood
+
+item/powerup		DSPOWUP
+
+item/tcross		DSCROSS
+item/tcup		DSCUP
+item/tbox		DSBOX
+item/tcrown		DSCROWN
+
+misc/k_pkup		dskey
+misc/secret		dsyeah
+
+$random menu/quitsound	{ guard/sight dog/sight ss/sight mutant/death officer/sight robe/sight hans/sight dr/sight hitler/sight otto/sight Gretl/sight fett/sight }
+menu/activate		dsmenu1	// Activate a new menu
+menu/backup		dsmenu2	// Backup to previous menu
+menu/prompt		dsmenu1	// Activate a prompt "menu"
+menu/cursor		dsmenu3	// Move cursor up/down
+menu/change		dsmenu1	// Select new value for option
+menu/invalid		dsmenu2	// Menu not available
+menu/dismiss		dsmenu2	// Dismiss a prompt message
+menu/choose		dsmenu1	// Choose a menu item
+menu/clear		dsmenu2	// Close top menu
+
+$limit enemy/pistol 0
+$limit guard/sight 0
+$limit guard/death 0
+$limit guard/pain 0
+$limit dog/sight 0
+$limit dog/active 0
+$limit dog/pain 0
+$limit dog/melee 0
+$limit dog/death 0
+$limit ss/sight 0
+$limit ss/active 0
+$limit ss/pain 0
+$limit ss/death 0
+$limit ss/attack 0
+$limit mutant/sight 0
+$limit mutant/pain 0
+$limit mutant/active 0
+$limit mutant/death 0
+$limit officer/sight 0
+$limit officer/pain 0
+$limit officer/active 0
+$limit officer/death 0
+$limit robe/sight 0
+$limit robe/active 0
+$limit robe/raiseguns 0
+$limit robe/death 0
+$limit robe/attack 0
+$limit robe/melee 0
+$limit robe/shotx 0
+$limit hans/sight 0
+$limit hans/death 0
+$limit hans/attack 0
+$limit hans/active 0
+$limit dr/sight 0
+$limit dr/death 0
+$limit dr/active 0
+$limit dr/melee 0
+$limit dr/attack 0
+$limit dr/shotx 0
+$limit spider/walk 0
+$limit hitler/sight 0
+$limit hitler/active 0
+$limit hitler/death 0
+$limit hitler2/death 0
+$limit hitler/attack 0
+$limit otto/sight 0
+$limit otto/active 0
+$limit otto/death 0
+$limit otto/hoof 0
+$limit Gretl/sight 0
+$limit Gretl/death 0
+$limit Gretl/active 0
+$limit fett/sight 0
+$limit fett/active 0
+$limit fett/death 0
+$limit weapons/knife 0
+$limit weapons/pistol 0
+$limit weapons/machine 0
+$limit weapons/chngun 0
+$limit doorsecret 0
+$limit dooropenclose 0
+$limit dooropen 0
+$limit doorclose 0
+$limit doorlocked 0
+$limit item/ammo 0
+$limit item/machinegun 0
+$limit item/chaingun 0
+$limit item/food 0
+$limit item/medkit 0
+$limit item/blood 0
+$limit item/powerup 0
+$limit item/tcross 0
+$limit item/tcup 0
+$limit item/tbox 0
+$limit item/tcrown 0
+$limit misc/k_pkup 0
+$limit misc/secret 0
+
+player/death	DSPLDIE
+player/null		DSEMPTY
+$limit player/death 0
+
+$playeralias	BJ	male	*death		player/death
+$playeralias	BJ	male	*pain100	null
+$playeralias	BJ	male	*pain75		*pain100
+$playeralias	BJ	male	*pain50		*pain100
+$playeralias	BJ	male	*pain25		*pain100
+$playeralias	BJ	male	*grunt		doorlocked
+$playeralias	BJ	male	*land		player/null
+$playeralias	BJ	male	*poison		null
+$playeralias	BJ	male	*falling	null
+$playeralias	BJ	male	*splat		player/death
+$playeralias	BJ	male	*usefail	doorlocked
+$playeralias	BJ	male	*puzzfail	doorlocked
+$playersound	BJ	male	*jump		null
+$playeralias	BJ	male 	*fistgrunt	null

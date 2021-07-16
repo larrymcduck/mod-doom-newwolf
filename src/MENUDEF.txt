@@ -1,0 +1,906 @@
+DEFAULTLISTMENU
+{
+	Font "MENUFONT_WOLF", "Untranslated"
+	Selector "M_SKULL1", -32, -5
+	Linespacing 13
+}
+
+ListMenu "MainMenu"
+{
+	StaticPatchCentered 160, 0, "red_back"
+	StaticPatchCentered 160, -1, "M_DOOM"
+	Position 120, 75
+
+	StaticPatchCentered 160, 71, "menub5"
+	TextItem "New Game", "n", "EpisodeMenu"
+	TextItem "Options", "o", "WolfOptionsMenu"
+	TextItem "Load Game", "l", "LoadGameMenu"
+	TextItem "Save Game", "s", "SaveGameMenu"
+	TextItem "Quit", "q", "QuitMenu"
+}
+
+ListMenu "EpisodeMenu"
+{
+	NetgameMessage "$NEWGAME"
+
+	StaticPatchCentered 160, 0, "red_back"
+	StaticPatchCentered 160, 0, "M_EPISOD"
+	StaticPatchCentered 160, 21, "menubep"
+	Position 40, 25
+	Linespacing 26
+}
+
+ListMenu "SkillMenu"
+{
+	StaticPatchCentered 160, 0, "red_back"
+	StaticPatchCentered 160, 0, "M_SKILL"
+	StaticPatchCentered 160, 20, "skills"
+	StaticPatchCentered 160, 59, "menubsk"
+	Position 78, 63
+}
+
+ListMenu "LoadGameMenu"
+{
+	NetgameMessage "$LOADNET"
+	StaticPatchCentered 160, 0, "red_back"
+	StaticPatchCentered 160, -1, "GAME_L"
+	Position 80,54
+	Class "LoadMenu"	// uses its own implementation
+}
+
+ListMenu "SaveGameMenu"
+{
+	StaticPatchCentered 160, 0, "red_back"
+	StaticPatchCentered 160, -1, "GAME_S"
+	Position 80,54
+	Class "SaveMenu"	// uses its own implementation
+}
+
+OptionMenuSettings
+{
+	Linespacing 8
+}
+
+DefaultOptionMenu
+{
+	Position -15
+}
+
+OptionMenu WolfMultiplayerOptions
+{
+	Title "Multiplayer Options"
+	
+	SubMenu		"Offline Skirmish",			"ZA_SkirmishMenu"
+	SubMenu		"Network Options",			"ZA_NetworkOptions"
+	SubMenu		"Log in",					"ZA_LoginMenu"
+	SubMenu		"Browse servers",			"ZA_Browser"
+	StaticText	""
+	Command		"Spectate",					"menu_spectate"
+	Command		"Switch teams",				"menu_changeteam"
+	Command		"Disconnect",				"menu_disconnect"
+	StaticText	""
+	SubMenu		"Call a vote",				"ZA_CallVote"
+	SubMenu		"Ignore a player",			"ZA_IgnoreMenu"
+	StaticText	""
+	Option		"Start as spectator",		"cl_startasspectator",		"YesNo"
+	TextField	"Server password",			"cl_password"
+	TextField	"Server join password",		"cl_joinpassword"
+	Option		"Reset frags at join",		"cl_dontrestorefrags",		"YesNo"
+	Option		"Hide country",				"cl_hidecountry",			"YesNo"
+	Option		"Respawn using attack key",	"cl_respawnonfire",			"YesNo"
+	StaticText	""
+	Option		"Skins",					"cl_skins",					"ZA_AllowSkins"
+	Option		"Taunts",					"cl_taunts",				"OnOff"
+	Option		"Icons",					"cl_icons",					"OnOff"
+	Option		"Identify players",			"cl_identifytarget",		"OnOff"
+	Option		"Show spawn spots",			"cl_showspawns",			"YesNo"
+	Slider		"Spectator move speed",		"cl_spectatormove",			0.1, 5.0, 0.1
+	StaticText	""
+	Option		"Override player colors",	"cl_overrideplayercolors",	"ZA_OverridePlayerColors"
+	ColorPicker	"Ally color",				"cl_allycolor"
+	ColorPicker	"Enemy color",				"cl_enemycolor"
+}
+ListMenu "WolfOptionsMenu"
+{
+	StaticPatchCentered 160, 0, "red_back"
+	StaticPatchCentered 160, -1, "options"
+	StaticPatchCentered 160, 50, "menubep"
+	Position 73,54
+
+	Font "SmallFont", "Untranslated"
+	Linespacing 10
+	TextItem "Multiplayer Options", "", "WolfMultiplayerOptions"
+	TextItem "Player Menu", "", "WolfPlayerMenu"
+	TextItem "Sound Options", "", "SoundOptions"
+	TextItem "Customize Controls", "", "CustomizeControls"
+	TextItem "Mouse Options", "", "MouseOptions"
+	TextItem "Joystick Options", "", "JoystickOptions"
+	TextItem "Gameplay Options", "", "GameplayOptions"
+	TextItem "Compatibility Options", "", "CompatibilityOptions"
+	TextItem "Automap Options", "", "AutomapOptions"
+	TextItem "HUD Options", "", "HUDOptions"
+	TextItem "Miscellaneous Options", "", "MiscOptions"
+	TextItem "Display Options", "", "VideoOptions"
+	TextItem "Video Mode", "", "VideoModeMenu"
+}
+
+ListMenu "WolfPlayerMenu"
+{
+	StaticPatchCentered 160, 0, "red_back"
+	StaticPatchCentered 160, -1, "custom"
+	StaticPatchCentered 160, 28, "menubep"
+	Font "SmallFont"
+	Linespacing 14
+	Position 48, 36
+
+	PlayerNameBox "Name", 0, "Playerbox"
+	MouseWindow 0, 220
+	PlayerDisplay 220, 80, "20 00 00", "80 00 40", 1, "PlayerDisplay"
+	
+	Linespacing 10
+	Slider "Red", "Red", 0, 255, 16
+	Slider "Green", "Green", 0, 255, 16
+	Linespacing 14
+	Slider "Blue", "Blue", 0, 255, 16
+	ValueText "Class:", "Class"
+	ValueText "Skin:", "Skin"
+	ValueText "Gender:", "Gender", "Gender"
+	ValueText "Autoaim:", "Autoaim", "Autoaim"
+	Slider "Handicap", "Handicap", 0, 200, 5 // [TP]
+	ValueText "Always Run:", "AlwaysRun", "OnOff"
+	TextItem "Weapon Setup", "w", "ZA_WeaponSetup" // [TP]
+	Class "PlayerMenu"
+}
+
+OptionMenu "CustomizeControls"
+{
+	Title "Customize Controls"
+	StaticTextSwitchable 	"ENTER to change, BACKSPACE to clear", "Press new key for control, ESC to cancel", "ControlMessage"
+	ScrollTop 2
+
+	StaticText 	""
+	StaticText 	"Controls", 1
+	Control 	"Fire",					"+attack"
+	Control 	"Secondary Fire",		"+altattack"
+	Control 	"Weapon Reload",			"+reload"
+	Control 	"Weapon Zoom",				"+zoom"
+	Control 	"Use / Open",			"+use"
+	Control 	"Move forward",			"+forward"
+	Control 	"Move backward",		"+back"
+	Control 	"Strafe left",			"+moveleft"
+	Control 	"Strafe right",			"+moveright"
+	Control 	"Turn left",			"+left"
+	Control 	"Turn right",			"+right"
+	Control 	"Jump",					"+jump"
+	Control 	"Crouch",				"+crouch"
+	Control 	"Crouch Toggle",		"crouch"
+	Control 	"Fly / Swim up",		"+moveup"
+	Control 	"Fly / Swim down",		"+movedown"
+	Control 	"Stop flying",			"land"
+	Control 	"Mouse look",			"+mlook"
+	Control 	"Keyboard look",		"+klook"
+	Control 	"Look up",				"+lookup"
+	Control 	"Look down",			"+lookdown"
+	Control 	"Center view",			"centerview"
+	Control 	"Run",					"+speed"
+	Control 	"Strafe",				"+strafe"
+	Control 	"Show Scoreboard",		"+showscores"
+	Control		"Show medals",			"+showmedals" // [TP]
+	StaticText 	""
+	StaticText 	"Chat", 1
+	Control 	"Say",					"messagemode"
+	Control 	"Team say",				"messagemode2"
+	StaticText 	""
+	StaticText 	"Weapons", 1
+	Control 	"Next weapon",			"weapnext"
+	Control 	"Previous weapon",		"weapprev"
+	Control		"Weapon Slot 1",		"slot 1"
+	Control		"Weapon Slot 2",		"slot 2"
+	Control		"Weapon Slot 3",		"slot 3"
+	Control		"Weapon Slot 4",		"slot 4"
+	Control		"Weapon Slot 5",		"slot 5"
+	Control		"Weapon Slot 6",		"slot 6"
+	Control		"Weapon Slot 7",		"slot 7"
+	Control		"Weapon Slot 8",		"slot 8"
+	Control		"Weapon Slot 9",		"slot 9"
+	Control		"Weapon Slot 0",		"slot 0"
+	StaticText 	""
+	StaticText 	"Inventory", 1
+	Control 	"Activate item",		"invuse"
+	Control 	"Activate all items",	"invuseall"
+	Control 	"Next item",			"invnext"
+	Control 	"Previous item",		"invprev"
+	Control 	"Drop item",			"invdrop"
+	Control		"Query item",			"invquery"
+	Control 	"Drop weapon",			"weapdrop"
+	// [TP] Voting controls
+	StaticText 	""
+	StaticText 	"Voting", 1
+	Control		"Vote yes",				"vote_yes"
+	Control		"Vote no",				"vote_no"
+	// [TP] --
+	StaticText 	""
+	StaticText 	"Other", 1
+	Control 	"Toggle automap",		"togglemap"
+	Control 	"Chasecam",				"chase"
+	Control 	"Coop spy",				"spynext"
+	Control 	"Screenshot",			"screenshot"
+	Control		"Spectate",				"spectate" // [TP]
+	Control		"Taunt",				"taunt" // [TP]
+	Option		"Join the game",		"joinmenukey", "JoinMenuKeys" // [TP]
+	Control		"Join the game (custom)", "menu_join" // [TP]
+	Control  	"Open console",			"toggleconsole"
+	StaticText 	""
+	StaticText 	"Strife Popup Screens", 1
+	Control 	"Mission objectives",	"showpop 1"
+	Control 	"Keys list",			"showpop 2"
+	Control 	"Weapons/ammo/stats",	"showpop 3"
+}
+
+OptionMenu "MouseOptions"
+{
+	Title "Mouse Options"
+	Option "Enable mouse",				"use_mouse", "YesNo"
+	Option "Enable mouse in menus",	"m_use_mouse", "MenuMouse", "use_mouse"
+	Option "Show back button",		"m_show_backbutton", "Corners", "use_mouse"
+	Option "Cursor",				"vid_cursor", "Cursors"
+	StaticText 	""
+	Slider "Overall sensitivity",		"mouse_sensitivity", 0.5, 2.5, 0.1
+	Option "Prescale mouse movement",	"m_noprescale", "NoYes"
+	// [BB] smooth_mouse doesn't do anything in Skulltag (Carn deactivated it long ago), so link this to m_filter.
+	Option "Smooth mouse movement",		"m_filter", "YesNo"
+	StaticText 	""
+	Slider "Turning speed",				"m_yaw", 0, 2.5, 0.1
+	Slider "Mouselook speed",			"m_pitch", 0, 2.5, 0.1
+	Slider "Forward/Backward speed",	"m_forward", 0, 2.5, 0.1
+	Slider "Strafing speed",			"m_side", 0, 2.5, 0.1
+	StaticText 	""
+	Option "Always Mouselook",			"freelook", "OnOff"
+	Option "Invert Mouse",				"invertmouse", "OnOff"
+	Option "Lookspring",				"lookspring", "OnOff"
+	Option "Lookstrafe",				"lookstrafe", "OnOff"
+}
+
+
+OptionMenu "JoystickOptions"
+{
+	Title "Controller Options"
+	// Will be filled in by joystick code.
+}
+
+OptionMenu "JoystickConfigMenu"
+{
+	Title "Configure Controller"
+	Class "JoystickConfigMenu"
+	// Will be filled in by joystick code.
+}
+
+OptionMenu "HUDOptions"
+{
+	Title "HUD Options"
+	Submenu "Alternative HUD",			"AltHudOptions"
+	Submenu "Message Options", 			"MessageOptions"
+	StaticText " "
+	Option "Default Crosshair",			"crosshair", "Crosshairs"
+	Option "Force default crosshair",	"crosshairforce", "OnOff"
+	Option "Grow crosshair when picking up items",	"crosshairgrow", "OnOff"
+	ColorPicker "Crosshair color", 		"crosshaircolor"
+	Option "Crosshair shows health",	"crosshairhealth", "OnOff"
+	Option "Scale crosshair",			"crosshairscale", "OnOff"
+	Option "Voting display",			"cl_showfullscreenvote", "ZA_VotingDisplay"
+	Option "Fullscreen HUD",			"cl_stfullscreenhud", "ZA_FullscreenHUD"
+	StaticText " "
+	Option "Large frag messages",		"cl_showlargefragmessages",	"YesNo" // [TP]
+	Option "Draw coop info",			"cl_drawcoopinfo", "YesNo" // [TP]
+	Option "Display nametags",			"displaynametags", "DisplayTagsTypes"
+	Option "Nametag color",				"nametagcolor", "TextColors", "displaynametags"
+	Option "Stretch status bar",		"st_scale", "OnOff"
+	Option "Stretch Fullscreen HUD",	"hud_scale", "OnOff"
+	Option "Use old ouch mug shot formula",	"st_oldouch", "OnOff"
+	StaticText " "
+	Option "Hexen weapon flashes",		"pf_hexenweaps",	"ZDoomHexen"
+	Option "Poison damage flashes",		"pf_poison",		"ZDoomHexen"
+	Option "Ice death flashes",			"pf_ice",			"ZDoomHexen"
+	Option "Poison Buildup flashes",	"pf_hazard",		"ZDoomStrife"
+}
+
+OptionMenu "AltHUDOptions"
+{
+	Title "Alternative HUD"
+	//Indent 220
+	Option "Enable alternative HUD",				"hud_althud", "OnOff"
+	Option "Stretch alternative HUD",				"hud_althudscale", "AltHUDScale"
+	Option "Show secret count",						"hud_showsecrets", "OnOff"
+	Option "Show monster count",					"hud_showmonsters", "OnOff"
+	Option "Show item count",						"hud_showitems", "OnOff"
+	Option "Show stamina and accuracy",				"hud_showstats", "OnOff"
+	Option "Show berserk",							"hud_berserk_health", "OnOff"
+	Option "Show time",								"hud_showtime", "AltHUDTime"
+	Option "Time color",							"hud_timecolor", "TextColors"
+	Slider "Red ammo display below %",				"hud_ammo_red", 0, 100, 1, 0
+	Slider "Yellow ammo display below %",			"hud_ammo_yellow", 0, 100, 1, 0
+	Slider "Red health display below",				"hud_health_red", 0, 100, 1, 0
+	Slider "Yellow health display below",			"hud_health_yellow", 0, 100, 1, 0
+	Slider "Green health display below",			"hud_health_green", 0, 100, 1, 0
+	Slider "Red armor display below",				"hud_armor_red", 0, 100, 1, 0
+	Slider "Yellow armor display below",			"hud_armor_yellow", 0, 100, 1, 0
+	Slider "Green armor display below",				"hud_armor_green", 0, 100, 1, 0
+	StaticText " "
+	StaticText "Alternative Automap HUD", 1
+	option "Map title color",						"hudcolor_titl", "TextColors"
+	option "Map time color",						"hudcolor_ltim", "TextColors"
+	option "Hub time color",						"hudcolor_time", "TextColors"
+	option "Total time color",						"hudcolor_ttim", "TextColors"
+	option "Coordinate color",						"hudcolor_xyco", "TextColors"
+	option "Coordinate mode",						"map_point_coordinates", "AMCoordinates"
+	option "Statistics name color",					"hudcolor_statnames", "TextColors"
+	option "Statistics color",						"hudcolor_stats", "TextColors"
+}
+
+OptionMenu "MiscOptions"
+{
+	Title "Miscellaneous Options"
+	//Indent 220
+	IfOption(Windows)
+	{
+		Option "Merge left+right Alt/Ctrl/Shift", 		"k_mergekeys", "OnOff"
+		Option "Alt-Enter toggles fullscreen",			"k_allowfullscreentoggle", "OnOff"
+	}
+	Option "Show IWAD selection dialog",			"queryiwad", "OnOff"
+	StaticText " "
+	Option "Enable cheats from all games",			"allcheats", "OnOff"
+	Option "Enable autosaves",						"disableautosave", "Autosave"
+	Slider "Number of autosaves",					"autosavecount", 1, 20, 1, 0
+	Option "Load *.deh/*.bex lumps",				"dehload", "dehopt"
+	StaticText " "
+	Option "Cache nodes",							"gl_cachenodes", "OnOff"
+	Slider "Time threshold for node caching",		"gl_cachetime", 0.0, 2.0, 0.1
+	SafeCommand "Clear node cache",					"clearnodecache"
+}
+
+OptionMenu AutomapOptions
+{
+	Title "Automap Options"
+	Option "Map color set",				"am_colorset", "MapColorTypes"
+	Option "Allow map defined colors",	"am_customcolors", "YesNo"
+	Submenu "Set custom colors",		"MapColorMenu"
+	Submenu "Customize map controls",	"MapControlsMenu"
+	StaticText " "
+	Option "Rotate automap",			"am_rotate", "RotateTypes"
+	Option "Overlay automap",			"am_overlay", "OverlayTypes"
+	Option "Enable textured display",	"am_textured", "OnOff"
+	Option "Follow player",				"am_followplayer", "OnOff"
+	StaticText " "
+	Option "Show item counts",			"am_showitems", "OnOff"
+	Option "Show monster counts",		"am_showmonsters", "OnOff"
+	Option "Show secret counts",		"am_showsecrets", "OnOff"
+	Option "Show time elapsed",			"am_showtime", "OnOff"
+	Option "Show total time elapsed",	"am_showtotaltime", "OnOff"
+	Option "Show secrets on map",		"am_map_secrets", "SecretTypes"
+	Option "Show map label",			"am_showmaplabel", "MaplabelTypes"
+	Option "Draw map background",		"am_drawmapback", "MapBackTypes"
+	Option "Show keys (cheat)",			"am_showkeys", "OnOff"
+	Option "Show trigger lines",		"am_showtriggerlines", "OnOff"
+	Option "Show things as sprites",	"am_showthingsprites", "STSTypes"
+}
+
+OptionMenu MapControlsMenu
+{
+	Title "Customize Map Controls"
+	ScrollTop 2
+	StaticTextSwitchable 	"ENTER to change, BACKSPACE to clear", "Press new key for control, ESC to cancel", "ControlMessage"
+	StaticText 	""
+	StaticText "Map Controls", 1
+	MapControl "Pan left",		"+am_panleft"
+	MapControl "Pan right",		"+am_panright"
+	MapControl "Pan up",		"+am_panup"
+	MapControl "Pan down",		"+am_pandown"
+	MapControl "Zoom in",		"+am_zoomin"
+	MapControl "Zoom out",		"+am_zoomout"
+	MapControl "Toggle zoom",	"am_gobig"
+	MapControl "Toggle follow",	"am_togglefollow"
+	MapControl "Toggle grid",	"am_togglegrid"
+	MapControl "Toggle texture","am_toggletexture"
+	MapControl "Set mark",		"am_setmark"
+	MapControl "Clear mark",	"am_clearmarks"
+}
+
+OptionMenu MapColorMenu
+{
+	Title "Customize Map Colors"
+	SafeCommand "Restore default custom colors", "am_restorecolors"
+	StaticText " "
+	ColorPicker "Background",								"am_backcolor"		
+	ColorPicker "You",										"am_yourcolor"		
+	ColorPicker "1-sided walls",							"am_wallcolor"		
+	ColorPicker "2-sided walls with different floors",		"am_fdwallcolor"		
+	ColorPicker "2-sided walls with different ceilings",	"am_cdwallcolor"		
+	ColorPicker "2-sided walls with 3D floors",				"am_efwallcolor"		
+	ColorPicker "Map grid",									"am_gridcolor"		
+	ColorPicker "Center point",								"am_xhaircolor"		
+	ColorPicker "Not-yet-seen walls",						"am_notseencolor"		
+	ColorPicker "Locked doors",								"am_lockedcolor"		
+	ColorPicker "Teleporter to the same map",				"am_intralevelcolor"	
+	ColorPicker "Teleporter to a different map",			"am_interlevelcolor"	
+	ColorPicker "Secret sector",							"am_secretsectorcolor"	
+	ColorPicker "Special trigger lines",					"am_specialwallcolor"
+	StaticText " "
+	StaticText "Cheat Mode", 1
+	ColorPicker "Invisible 2-sided walls",		"am_tswallcolor"		
+	ColorPicker "Secret walls",					"am_secretwallcolor"	
+	ColorPicker "Actors",						"am_thingcolor"		
+	ColorPicker "Monsters",						"am_thingcolor_monster"		
+	ColorPicker "non-counting Monsters",		"am_thingcolor_ncmonster"		
+	ColorPicker "Friends",						"am_thingcolor_friend"		
+	ColorPicker "Items",						"am_thingcolor_item"			
+	ColorPicker "Count Items",					"am_thingcolor_citem"			
+	StaticText " "
+	StaticText "Overlay Mode", 1
+	ColorPicker "You",							"am_ovyourcolor"		
+	ColorPicker "1-sided walls",				"am_ovwallcolor"		
+	ColorPicker "2-sided walls with different floors",		"am_ovfdwallcolor"		
+	ColorPicker "2-sided walls with different ceilings",	"am_ovcdwallcolor"		
+	ColorPicker "2-sided walls with 3D floors",				"am_ovefwallcolor"		
+	ColorPicker "Not-yet-seen walls",			"am_ovunseencolor"	
+	ColorPicker "Locked doors",				"am_ovlockedcolor"
+	ColorPicker "Teleporter to the same map",					"am_ovtelecolor"		
+	ColorPicker "Teleporter to a different map",			"am_ovinterlevelcolor"	
+	ColorPicker "Secret sector",				"am_ovsecretsectorcolor"	
+	ColorPicker "Special trigger lines",		"am_ovspecialwallcolor"
+	StaticText " "
+	StaticText "Overlay Cheat Mode", 1
+	ColorPicker "Invisible 2-sided walls",		"am_ovotherwallscolor"		
+	ColorPicker "Secret walls",					"am_ovsecretwallcolor"	
+	ColorPicker "Actors",						"am_ovthingcolor"		
+	ColorPicker "Monsters",						"am_ovthingcolor_monster"		
+	ColorPicker "non-counting Monsters",		"am_ovthingcolor_ncmonster"		
+	ColorPicker "Friends",						"am_ovthingcolor_friend"		
+	ColorPicker "Items",						"am_ovthingcolor_item"		
+	ColorPicker "Count Items",					"am_ovthingcolor_citem"		
+}
+
+OptionMenu ColorPickerMenu
+{
+	Title "Select Color"
+	// This menu will be created by the calling code
+}
+
+OptionMenu MessageOptions
+{
+	Title 	"Message Options"
+	SubMenu "Text scaling",				"ZA_TextScaling" // [TP]
+	Option "Show messages",				"show_messages", "OnOff"
+	Option "Show obituaries",			"show_obituaries", "OnOff"
+	Option "Chat sound",				"chat_sound", "ZA_ChatSound" // [TP]
+	// [EP] con_scaletext is moved to the "Text scaling" submenu
+	// Option "Scale text in high res", 	"con_scaletext", "ScaleValues"
+	Option "Minimum message level", 	"msg", "MessageLevels"
+	Option "Center messages",			"con_centernotify", "OnOff"
+	Option "Color in messages",			"con_colorinmessages", "ZA_ColorInMessages" // [TP]
+	StaticText " "
+	StaticText "Message Colors", 1
+	StaticText " "
+	Option "Item Pickup",				"msg0color", "TextColors"
+	Option "Obituaries",				"msg1color", "TextColors"
+	Option "Critical Messages",			"msg2color", "TextColors"
+	Option "Chat Messages",				"msg3color", "TextColors"
+	Option "Team Messages",				"msg4color", "TextColors"
+	Option "Centered Messages",			"msgmidcolor", "TextColors"
+	StaticText " "
+	Option "Screenshot messages",		"screenshot_quiet",	"OffOn"
+	Option "Detailed save messages",	"longsavemessages",	"OnOff"
+}
+
+OptionMenu ScoreboardOptions
+{
+	Title "Scoreboard Options"
+	StaticText "Cooperative Options", 1
+	StaticText " "
+	Option "Enable Scoreboard",		"sb_cooperative_enable", "YesNo"
+	Option "Header Color",			"sb_cooperative_headingcolor", "TextColors"
+	Option "Your Player Color",		"sb_cooperative_yourplayercolor", "TextColors"
+	Option "Other Players' Color",	"sb_cooperative_otherplayercolor", "TextColors"
+	StaticText " "
+	StaticText " "
+	StaticText "Deathmatch Options", 1
+	StaticText " "
+	Option "Enable Scoreboard",		"sb_deathmatch_enable",	"YesNo"
+	Option "Header Color",			"sb_deathmatch_headingcolor", "TextColors"
+	Option "Your Player Color",		"sb_deathmatch_yourplayercolor", "TextColors"
+	Option "Other Players' Color",	"sb_deathmatch_otherplayercolor", "TextColors"
+	StaticText " "
+	StaticText " "
+	StaticText "Team Deathmatch Options", 1
+	StaticText " "
+	Option "Enable Scoreboard",		"sb_teamdeathmatch_enable", "YesNo"
+	Option "Header Color",			"sb_teamdeathmatch_headingcolor", "TextColors"
+}
+
+OptionMenu GameplayOptions
+{
+	Title 	"Gameplay Options"
+	//Indent 222
+	Option "Teamplay",				"teamplay",	"OnOff"
+	Slider	"Team damage scalar",	"teamdamage", 0, 1, 0.05
+	StaticText " "
+	Option "Smart Autoaim",			"sv_smartaim", "SmartAim"
+	StaticText " "
+	Option "Falling damage",		"sv_fallingdamage", "FallingDM"
+	Option "Drop weapon",			"sv_weapondrop", "YesNo"
+	Option "Double ammo",			"sv_doubleammo", "YesNo"
+	Option "Infinite ammo",			"sv_infiniteammo", "YesNo"
+	Option "Infinite inventory",	"sv_infiniteinventory", "YesNo"
+	Option "No monsters",			"sv_nomonsters", "YesNo"
+	Option "No monsters to exit",	"sv_killallmonsters", "YesNo"
+	Option "Monsters respawn",		"sv_monsterrespawn", "YesNo"
+	Option "No respawn",			"sv_norespawn", "YesNo"
+	Option "Items respawn",			"sv_itemrespawn", "YesNo"
+	Option "Big powerups respawn",	"sv_respawnsuper", "YesNo"
+	Option "Fast monsters",			"sv_fastmonsters", "YesNo"
+	Option "Degeneration",			"sv_degeneration", "YesNo"
+	Option "Allow Autoaim",			"sv_noautoaim", "NoYes"
+	Option "Allow Suicide",			"sv_disallowsuicide", "NoYes"
+	Option "Allow jump",			"sv_jump", "JumpCrouch"
+	Option "Allow crouch",			"sv_crouch", "JumpCrouch"
+	Option "Allow freelook",		"sv_nofreelook", "NoYes"
+	Option "Allow FOV",				"sv_nofov", "NoYes"
+	// [TP] Zandronum has this CVar under a different name
+	// Option "Allow BFG aiming",		"sv_nobfgaim", "NoYes"
+	Option "Allow BFG aiming",		"sv_bfgfreeaim", "YesNo"
+	Option "Allow automap",			"sv_noautomap", "NoYes"
+	Option "Automap allies",		"sv_noautomapallies", "NoYes"
+	Option "Allow spying",			"sv_disallowspying", "NoYes"
+	Option "Chasecam cheat",		"sv_chasecam", "YesNo"
+	Option "Check ammo for weapon switch",	"sv_dontcheckammo", "NoYes"
+	Option "Icon's death kills its spawns",	"sv_killbossmonst", "YesNo"
+	Option "End sector counts for kill %",	"sv_nocountendmonst", "NoYes"
+	// [TP] Zandronum dmflags
+	Option "Allow player identification",	"sv_noidentifytarget", "NoYes"
+	Option "Unblock players",		"sv_unblockplayers", "YesNo"
+	Option "Unblock allies",		"sv_unblockallies", "YesNo"
+	Option "Allow rocket jumping",	"sv_norocketjumping", "NoYes"
+	Option "Allow item dropping",	"sv_nodrop", "NoYes"
+	Option "Award damage dealt",	"sv_awarddamageinsteadkills", "YesNo"
+	Option "Force OpenGL defaults",	"sv_forcegldefaults", "YesNo"
+	Option "Force translucency",	"sv_forcealpha", "YesNo"
+	Option "Full blood brightness",	"sv_maxbloodscalar", "YesNo"
+	// [TP] --
+
+	StaticText " "
+	StaticText "Deathmatch Settings",1
+	Option "Weapons stay",			"sv_weaponstay", "YesNo"
+	Option "Allow powerups",		"sv_noitems", "NoYes"
+	Option "Allow health",			"sv_nohealth", "NoYes"
+	Option "Allow armor",			"sv_noarmor", "NoYes"
+	Option "Spawn farthest",		"sv_spawnfarthest", "YesNo"
+	Option "Same map",				"sv_samelevel", "YesNo"
+	Option "Force respawn",			"sv_forcerespawn", "YesNo"
+	Option "Allow exit",			"sv_noexit", "NoYes"
+	Option "Barrels respawn",		"sv_barrelrespawn", "YesNo"
+	// [TP] Zandronum has this CVar under a different name
+	// Option "Respawn protection",	"sv_respawnprotect", "YesNo"
+	Option "Respawn protection",	"sv_norespawninvul", "NoYes"
+	Option "Lose frag if fragged",	"sv_losefrag", "YesNo"
+	Option "Keep frags gained",		"sv_keepfrags", "YesNo"
+	Option "No team switching",		"sv_noteamswitch", "YesNo"
+	// [TP/BB/EP] Zandronum deathmatch settings
+	Option "Don't spawn runes (DM)", "sv_norunes", "YesNo"
+	Option "Instant flag return (ST/CTF)", "sv_instantreturn", "YesNo"
+	Option "Server picks teams (ST/CTF)", "sv_noteamselect", "YesNo"
+	Option "Keep teams across levels", "sv_keepteams", "YesNo"
+	Option "Apply LMS spectator settings",	"sv_applylmsspectatorsettings", "YesNo"
+	Option "Medals",				"sv_nomedals", "NoYes"
+	// [TP] --
+
+	StaticText " "
+	StaticText "Cooperative Settings",1
+	Option "Spawn multi. weapons", 	"sv_noweaponspawn", "NoYes"
+	// [TP] Zandronum uses different names for these CVars
+	/*
+	Option "Lose entire inventory",	"sv_cooploseinventory", "YesNo"
+	Option "Keep keys",				"sv_cooplosekeys", "NoYes"
+	Option "Keep weapons",			"sv_cooploseweapons", "NoYes"
+	Option "Keep armor",			"sv_cooplosearmor", "NoYes"
+	Option "Keep powerups",			"sv_cooplosepowerups", "NoYes"
+	Option "Keep ammo",				"sv_cooploseammo", "NoYes"
+	Option "Lose half ammo",		"sv_coophalveammo", "YesNo"
+	*/
+	Option "Lose entire inventory",	"sv_coop_loseinventory", "YesNo"
+	Option "Keep keys",				"sv_coop_losekeys", "NoYes"
+	Option "Keep weapons",			"sv_coop_loseweapons", "NoYes"
+	Option "Keep armor",			"sv_coop_losearmor", "NoYes"
+	Option "Keep powerups",			"sv_coop_losepowerups", "NoYes"
+	Option "Keep ammo",				"sv_coop_loseammo", "NoYes"
+	Option "Lose half ammo",		"sv_coop_halveammo", "YesNo"
+	Option "Spawn where died",		"sv_samespawnspot", "YesNo"
+	// [TP/BB/EP] Zandronum co-operative settings
+	Option "Start with shotgun",	"sv_shotgunstart", "YesNo"
+	Option "Spawn singleplayer actors", "sv_coop_spactorspawn", "YesNo"
+	Option "Share keys",			"sv_sharekeys", "YesNo"
+	Option "Allow coop info",		"sv_nocoopinfo", "NoYes"
+	// [TP] --
+	Class "GameplayMenu"
+}
+
+OptionMenu "CompatibilityOptions"
+{
+	Title "Compatibility Options"
+	Option "Compatibility mode",						"compatmode", "CompatModes", "", 1
+
+	// [JDM] Separated ZDoom and Zandronum compatibility options
+	StaticText " "
+	StaticText "Vanilla/Boom Compatibility",1
+	Option "Find shortest textures like Doom",			"compat_SHORTTEX", "YesNo"
+	Option "Use buggier stair building",				"compat_stairs", "YesNo"
+	Option "Find neighboring light like Doom",			"compat_LIGHT", "YesNo"
+	Option "Limit Pain Elementals' Lost Souls",			"compat_LIMITPAIN", "YesNo"
+	Option "Don't let others hear your pickups",		"compat_SILENTPICKUP", "YesNo"
+	Option "Actors are infinitely tall",				"compat_nopassover", "YesNo"
+	Option "Enable wall running",						"compat_WALLRUN", "YesNo"
+	Option "Spawn item drops on the floor",				"compat_NOTOSSDROPS", "YesNo"
+	Option "All special lines can block <use>",			"compat_USEBLOCKING", "YesNo"
+	Option "Disable BOOM door light effect",			"compat_NODOORLIGHT", "YesNo"
+	Option "Raven scrollers use original speed",		"compat_RAVENSCROLL", "YesNo"
+	Option "Use original sound target handling",		"compat_SOUNDTARGET", "YesNo"
+	Option "DEH health settings like Doom2.exe",		"compat_DEHHEALTH", "YesNo"
+	Option "Self ref. sectors don't block shots",		"compat_TRACE", "YesNo"
+	Option "Monsters get stuck over dropoffs",			"compat_DROPOFF", "YesNo"
+	Option "Monsters cannot cross dropoffs",			"compat_CROSSDROPOFF", "YesNo"
+	Option "Monsters see invisible players",			"compat_INVISIBILITY", "YesNo"
+	Option "Boom scrollers are additive",				"compat_BOOMSCROLL", "YesNo"
+	Option "Inst. moving floors are not silent",		"compat_silentinstantfloors", "YesNo"
+	Option "Sector sounds use center as source",		"compat_SECTORSOUNDS", "YesNo"
+	Option "Use Doom heights for missile clipping",		"compat_MISSILECLIP", "YesNo"
+	Option "Allow any bossdeath for level special",		"compat_ANYBOSSDEATH", "YesNo"
+	Option "No Minotaur floor flames in water",			"compat_MINOTAUR", "YesNo"
+	Option "Original A_Mushroom speed in DEH mods",		"compat_MUSHROOM", "YesNo"
+	Option "Monster movement is affected by effects",	"compat_MBFMONSTERMOVE", "YesNo"
+	Option "Crushed monsters can be resurrected",		"compat_CORPSEGIBS", "YesNo"
+	Option "Friendly monsters aren't blocked",			"compat_NOBLOCKFRIENDS", "YesNo"
+	Option "Invert sprite sorting",						"compat_SPRITESORT", "YesNo"
+	Option "Use Doom code for hitscan checks",			"compat_HITSCAN", "YesNo"
+	Option "Cripple sound for silent BFG trick",		"compat_soundslots", "YesNo"
+	Option "Draw polyobjects like Hexen",				"compat_POLYOBJ", "YesNo"
+	Option "Ignore Y offsets on masked midtextures",	"compat_MASKEDMIDTEX", "YesNo"
+	Option "Cannot travel straight NSEW",				"compat_badangles", "YesNo"
+	Option "Use Doom's floor motion behavior",			"compat_floormove", "YesNo"
+	// [BB] Out of order ZDoom backport.
+	Option "Non-blocking lines can be pushed",			"compat_pushwindow", "YesNo"
+
+	// [TP] Zandronum compatibility settings
+	StaticText " "
+	StaticText "Old Zan/ST/ZDoom Compatibility",1
+	Option "Limit air movement",						"compat_limited_airmovement", "YesNo"
+	Option "Item grab like vanilla",					"compat_plasmabump", "YesNo"
+	Option "Respawn instantly",							"compat_instantrespawn", "YesNo"
+	Option "No taunts",									"compat_disabletaunts", "YesNo"
+	Option "Original sound curve",						"compat_originalsoundcurve", "YesNo"
+	Option "Use old intermission screens/music",		"compat_oldintermission", "YesNo"
+	Option "No stealth monsters",						"compat_disablestealthmonsters", "YesNo"
+	Option "Splash damage is infinitely tall",			"compat_oldradiusdmg", "YesNo"
+	Option "No crosshairs",								"compat_nocrosshair", "YesNo"
+	Option "Always switch weapons on pickup",			"compat_oldweaponswitch", "YesNo"
+	Option "NET scripts are client-side",				"compat_netscriptsareclientside", "YesNo"
+	Option "Clients send full button info",				"compat_clientssendfullbuttoninfo", "YesNo"
+	Option "Forbid the 'land' console command",			"compat_noland", "YesNo"
+	Option "Use the old pseudo-RNG",					"compat_oldrandom", "YesNo"
+	Option "Spheres float like in Skulltag",			"compat_nogravity_spheres", "YesNo"
+	Option "Player scripts resume after disconnect",	"compat_dont_stop_player_scripts_on_disconnect", "YesNo"
+	Option "Explosion thrust like old ZDoom versions",	"compat_explosionthrust", "YesNo"
+	Option "Dropped items pass through bridges",		"compat_bridgedrops", "YesNo"
+	Option "Vertical movement like old ZDoom versions",	"compat_oldzdoomzmovement", "YesNo"
+	Option "Weapons must be lowered fully",				"compat_fullweaponlower", "YesNo"
+	Option "Auto-aiming has vertical holes",			"compat_autoaim", "YesNo"
+	Option "West facing spawns are silent",				"compat_silentwestspawns", "YesNo"
+	
+	Class "CompatibilityMenu"
+}
+
+OptionMenu SoundOptions
+{
+	Title "Sound Options"
+	Slider "Sounds volume",		"snd_sfxvolume", 0, 1, 0.05
+	Slider "Menu volume",		"snd_menuvolume", 0, 1, 0.05
+	Slider "Music volume",		"snd_musicvolume", 0, 1, 0.05
+	Slider "Announcer volume",	"snd_announcervolume", 0, 1, 0.05 // [TP]
+	Option "Announcer",			"cl_announcer", "ZA_Announcers" // [TP]
+	Option "MIDI device",		"snd_mididevice", "MidiDevices"
+	StaticText " "
+	Option "Underwater reverb",	"snd_waterreverb", "OnOff"
+	Slider "Underwater cutoff",	"snd_waterlp", 0, 2000, 50, 0
+	Option "Randomize pitches",	"snd_pitched", "OnOff"
+	Slider "Sound channels",	"snd_channels", 8, 256, 8, 0
+	Option "Play connect sound", "cl_connectsound", "YesNo" // [TP]
+	Option "Multiple announcer sounds", "cl_allowmultipleannouncersounds", "YesNo" // [TP]
+	StaticText " "
+	Command "Restart sound",	"snd_reset"
+	StaticText " "
+	IfOption(Windows)
+	{
+		Option "Output system",		"snd_output", "SoundOutputsWindows"
+	}
+	IfOption(Unix)
+	{
+		Option "Output system",		"snd_output", "SoundOutputsUnix"
+	}
+	IfOption(Mac)
+	{
+		Option "Output system",		"snd_output", "SoundOutputsMac"
+	}
+	Option "Output format",		"snd_output_format", "OutputFormats"
+	Option "Speaker mode",		"snd_speakermode", "SpeakerModes"
+	Option "Resampler",			"snd_resampler", "Resamplers"
+	Option "HRTF filter",		"snd_hrtf", "OnOff"
+
+	StaticText " "
+	Submenu "Advanced options",			"AdvSoundOptions"
+	Submenu "Module replayer options",	"ModReplayerOptions"
+}
+
+OptionMenu AdvSoundOptions
+{
+	Title "Advanced Sound Options"
+	Option "Sample rate",			"snd_samplerate", "SampleRates"
+	Option "Buffer size",			"snd_buffersize", "BufferSizes"
+	Option "Buffer count",			"snd_buffercount", "BufferCounts"
+	StaticText " "
+	StaticText "OPL Synthesis",	1
+	Slider "Number of emulated OPL chips", "opl_numchips", 1, 8, 1, 0
+	Option "Full MIDI stereo panning", "opl_fullpan", "OnOff"
+	Option "OPL Emulator Core", "opl_core", "OplCores"
+	StaticText " "
+	StaticText "GUS Emulation",	1
+	Slider "MIDI voices",	"midi_voices", 16, 256, 4, 0
+	Option "Emulate TiMidity", "midi_timiditylike", "OnOff"
+	Option "Read DMXGUS lumps", "midi_dmxgus", "OnOff"
+	Option "GUS memory size", "gus_memsize", "GusMemory"
+}
+
+OptionMenu ModReplayerOptions
+{
+	Title "Module Replayer Options"
+	Option "Replayer engine",		"mod_dumb", "ModReplayers"
+	StaticText " "
+	Option "Sample rate",			"mod_samplerate", "SampleRates", "mod_dumb"
+	Option "Interpolation",			"mod_interp", "ModInterpolations", "mod_dumb"
+	Option "Volume ramping",		"mod_volramp", "ModVolumeRamps", "mod_dumb"
+	StaticText " "
+	Option "Chip-o-matic",			"mod_autochip", "OnOff", "mod_dumb"
+	// TODO if the menu system is ever rewritten: Provide a decent
+	// mechanism to edit the chip-o-matic settings like you can with
+	// the foo_dumb preferences in foobar2000.
+}
+
+ListMenu "WolfDisplayOptions"
+{
+	StaticPatchCentered 160, 0, "red_back"
+	StaticPatchCentered 160, -1, "options"
+
+	StaticPatchCentered 160, 50, "menubep"
+	Position 73,54
+
+	Font "SmallFont"
+	Linespacing 14
+	
+	TextItem "OpenGL Options", "", "OpenGLOptions"
+
+	Linespacing 8
+
+	//Slider "Screen size", "screenblocks", 3.0, 12.0, 1.0, 0
+
+	//Slider "Gamma correction", "Gamma", 0.75, 3.0, 0.05, 2
+	//Slider "Brightness", "vid_brightness", -0.8,0.8, 0.05
+	//Slider "Contrast", "vid_contrast", 0.1, 3.0, 0.1
+
+	ValueText "Vertical Sync:", "vid_vsync", "OnOff"
+
+	//Slider "Blood brightness", "blood_fade_scalar", 0.0, 1.0, 0.05
+
+	ValueText "Screen wipe style:", "wipetype", "Wipes"
+
+	IfOption(Windows)
+	{
+		ValueText "Show ENDOOM screen",	"showendoom", "Endoom"
+	}
+	
+	ValueText "Stretch short skies:", "r_stretchsky", "OnOff"
+	ValueText "Use fuzz effect:", "r_drawfuzz", "Fuzziness"
+	ValueText "Respawn invul effect:", "cl_respawninvuleffect", "ZA_RespawnInvulEffects" // [TP]
+	//Slider "Lost Soul translucency", "transsouls", 0.25, 1.0, 0.05, 2
+	ValueText "Use fake contrast:", "r_fakecontrast", "Contrast"
+	ValueText "Rocket Trails:", "cl_rockettrails", "RocketTrailTypes"
+	ValueText "Blood Type:", "cl_bloodtype", "BloodTypes"
+	ValueText "Bullet Puff Type:", "cl_pufftype", "PuffTypes"
+	//Slider "Number of particles", "r_maxparticles", 100, 10000, 100, 0
+	ValueText "Show player sprites:", "r_drawplayersprites", "OnOff"
+	ValueText "Death camera:", "r_deathcamera", "OnOff"
+	ValueText "Teleporter zoom:", "telezoom", "OnOff"
+	ValueText "Interpolate monster movement:", "nomonsterinterpolation", "NoYes"
+	Class "PlayerMenu" // need to update
+}
+
+OptionMenu "VideoOptions"
+{
+	Title "DISPLAY OPTIONS"
+	
+	Submenu "Scoreboard Options", 		"ScoreboardOptions"
+	StaticText " "
+	Slider "Screen size",				"screenblocks", 3.0, 12.0, 1.0, 0
+	Slider "Brightness",				"Gamma", 0.75, 3.0, 0.05, 2
+	Option "Vertical Sync",				"vid_vsync", "OnOff"
+	Option "Column render mode",		"r_columnmethod", "ColumnMethods"
+
+	StaticText " "
+	Option "Screen wipe style",			"wipetype", "Wipes"
+
+	IfOption(Windows)
+	{
+		Option	"Show ENDOOM screen",	"showendoom", "Endoom"
+		//Option "DirectDraw palette hack", "vid_palettehack", "OnOff"
+		//Option "Use attached surfaces", "vid_attachedsurfaces", "OnOff"
+	}
+	
+	Option "Stretch short skies",		"r_stretchsky", "OnOff"
+	Option "Use fuzz effect",			"r_drawfuzz", "Fuzziness"
+	Slider "Lost Soul translucency",	"transsouls", 0.25, 1.0, 0.05, 2
+	Option "Use fake contrast",			"r_fakecontrast", "Contrast"
+	Option "Rocket Trails",				"cl_rockettrails", "RocketTrailTypes"
+	Option "Blood Type",				"cl_bloodtype", "BloodTypes"
+	Option "Bullet Puff Type",			"cl_pufftype", "PuffTypes"
+	Slider "Number of particles",		"r_maxparticles", 100, 10000, 100, 0
+	Option "Show player sprites",		"r_drawplayersprites", "OnOff"
+	Option "Death camera",				"r_deathcamera", "OnOff"
+	Option "Teleporter zoom",			"telezoom", "OnOff"
+	Slider "Earthquake shake intensity",	"r_quakeintensity", 0.0, 1.0, 0.05, 2
+	Option "Interpolate monster movement",	"nomonsterinterpolation", "NoYes"
+}
+
+ListMenu WolfVideoModeMenu
+{
+	StaticPatchCentered 160, 0, "red_back"
+	StaticPatchCentered 160, -1, "options"
+
+	StaticPatchCentered 160, 50, "menubep"
+	Position 73,54
+
+	Font "SmallFont"
+	Linespacing 8
+	
+	ValueText "Fullscreen", "fullscreen", "YesNo"
+	ValueText "Aspect ratio", "menu_screenratios", "Ratios"
+	ValueText "Renderer",			"vid_renderer", "Renderers"
+	ValueText "Force aspect ratio",	"vid_aspect", "ForceRatios"
+	ValueText "Enable 5:4 aspect ratio","vid_tft", "YesNo"
+
+	Linespacing 14
+
+	Linespacing 8
+	Class "PlayerMenu" // need to update
+}
+
+OptionMenu VideoModeMenu
+{
+	Title "Video Mode"
+	
+	Option "Fullscreen",			"fullscreen", "YesNo"
+	Option "Aspect ratio",			"menu_screenratios", "Ratios"
+	// [BB]
+	Option "Renderer",			"vid_renderer", "Renderers"
+	Option "Force aspect ratio",	"vid_aspect", "ForceRatios"
+	Option "Enable 5:4 aspect ratio","vid_tft", "YesNo"
+	StaticText " "
+	ScreenResolution "res_0"
+	ScreenResolution "res_1"
+	ScreenResolution "res_2"
+	ScreenResolution "res_3"
+	ScreenResolution "res_4"
+	ScreenResolution "res_5"
+	ScreenResolution "res_6"
+	ScreenResolution "res_7"
+	ScreenResolution "res_8"
+	ScreenResolution "res_9"
+	StaticTextSwitchable "Press ENTER to set mode", "", "VMEnterText"
+	StaticText " "
+	StaticTextSwitchable "T to test mode for 5 seconds", "Please wait 5 seconds...", "VMTestText"
+	class VideoModeMenu
+}

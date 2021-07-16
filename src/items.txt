@@ -1,0 +1,225 @@
+// ----- TRESURE -----
+ACTOR Wolf_Score : Inventory
+{
+	Inventory.MaxAmount 999999
+}
+
+Actor Wolf_Treasure : CustomInventory
+{
+	//$Category Treasure
+	//$NotAngled
+	//$Color 19
+	Radius 16
+	+COUNTITEM
+	+INVENTORY.ALWAYSPICKUP
+}
+
+ACTOR Treasure1_Cross : Wolf_Treasure 10000 // 29
+{
+	Tag "_ Cross"
+	Inventory.PickupSound "item/tcross"
+	Inventory.Pickupmessage "Picked up some small treasure"
+	States
+	{
+		Spawn:
+			TCRS A -1
+			stop
+		Pickup:
+			TNT1 A 0 A_GiveInventory("Wolf_Score", 100)
+			stop
+	}
+}
+
+ACTOR Treasure2_Cup : Wolf_Treasure 10001 // 2015
+{
+	Tag "_ Cup"
+	Inventory.PickupSound "item/tcup"
+	Inventory.Pickupmessage "Picked up some treasure"
+	States
+	{
+		Spawn:
+			TCUP A -1
+			stop
+		Pickup:
+			TNT1 A 0 A_GiveInventory("Wolf_Score", 500)
+			stop
+	}
+}
+
+ACTOR Treasure3_Box : Wolf_Treasure 10002 // 2018
+{
+	Tag "_ Box"
+	Inventory.PickupSound "item/tbox"
+	Inventory.Pickupmessage "Picked up a treasure box"
+	States
+	{
+		Spawn:
+			TBOX A -1
+			stop
+		Pickup:
+			TNT1 A 0 A_GiveInventory("Wolf_Score", 1000)
+			stop
+	}
+}
+
+ACTOR Treasure4_Crown : Wolf_Treasure 10003 // 2019
+{
+	Tag "_ Crown"
+	Inventory.PickupSound "item/tcrown"
+	Inventory.Pickupmessage "Picked up a crown"
+	States
+	{
+		Spawn:
+			TCRN A -1
+			stop
+		Pickup:
+			TNT1 A 0 A_GiveInventory("Wolf_Score", 5000)
+			stop
+	}
+}
+
+// ----- HEALTH -----
+Actor WolfHealth : Health
+{
+	//$Category Health and Armor
+	Inventory.MaxAmount 100
+	Inventory.PickupSound "item/food"
+	-COUNTITEM
+	Radius 16
+}
+
+ACTOR Health_DogFood : WolfHealth 10004 // 2014
+{
+	Tag "_ Dog Food"
+	Inventory.Amount 1
+	Inventory.PickupMessage "Ate some dog food"
+	States
+	{
+		Spawn:
+			DFOD A -1
+			stop
+	}
+}
+
+ACTOR Health_Food : WolfHealth 10005 // 2011
+{
+	Tag "_ Food"
+	Inventory.Amount 10
+	Inventory.PickupMessage "Ate some food"
+	-COUNTITEM
+	States
+	{
+		Spawn:
+			FOOD A -1
+			Stop
+	}
+}
+
+ACTOR Health_Medikit : WolfHealth 10006 // 2012
+{
+	Tag "_ Medikit"
+	Inventory.PickupSound "item/medkit"
+	Inventory.Amount 25
+	Inventory.PickupMessage "Picked up a medikit."
+	States
+	{
+		Spawn:
+			MEDK A -1
+			Stop
+	}
+}
+
+Actor WolfHealthBlood : CustomInventory
+{
+	//$Category Health and Armor
+	Inventory.PickupSound "item/blood"
+	Inventory.PickupMessage "Drank some blood."
+	-COUNTITEM
+	Radius 16
+	States
+	{
+		Spawn:
+			TNT1 A -1
+			Stop
+		Pickup:
+			TNT1 A 0
+			TNT1 A 0 A_JumpIfHealthLower(10,"Drink")
+			Fail
+		Drink:
+			TNT1 A 0 A_GiveInventory("Health", 1)
+			Stop
+	}
+}
+
+Actor Decor_BloodyBones : WolfHealthBlood 10032 // 2047
+{
+	Tag "_ Bloody Bones"
+	States
+	{
+		Spawn:
+			SKBL A -1
+			stop
+	}
+}
+
+Actor BloodPuddle : WolfHealthBlood 10036 // 82
+{
+	Tag "_ Blood Puddle"
+	States
+	{
+		Spawn:
+			BLOD A -1
+			stop
+	}
+}
+
+// ----- POWERUPS -----
+Actor PowerUp_Recovery : WolfHealth 10007 // 2013
+{
+	Tag "_ Recovery"
+	+Inventory.AlwaysPickup
+	+COUNTITEM
+	Inventory.PickupSound "item/powerup"
+	Inventory.Amount 100
+	Inventory.PickupMessage "Recovery!"
+	States
+	{
+		Spawn:
+			SOUL A -1
+			stop
+	}
+}
+
+// ----- KEYS -----
+Actor Wolf_Key : Key
+{
+	//$Category Keys
+	Radius 16
+	Inventory.PickupSound "misc/k_pkup"
+}
+
+Actor Key_Gold : Wolf_Key 10008 // 5
+{
+	Tag "_ Key Gold"
+	Inventory.PickupMessage "Got the Gold Key!"
+	Inventory.Icon "GKEYA0"
+	States
+	{
+		Spawn:
+			GKEY A -1
+			stop
+	}
+}
+
+Actor Key_Silver : Wolf_Key 10009 // 6
+{
+	Tag "_ Key Silver"
+	Inventory.PickupMessage "Got the Silver Key!"
+	Inventory.Icon "SKEYA0"
+	States
+	{
+		Spawn:
+			SKEY A -1
+			stop
+	}
+}

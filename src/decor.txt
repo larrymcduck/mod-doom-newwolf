@@ -1,0 +1,432 @@
+Actor WolfDecor
+{
+	//$Category Obstacles
+	Radius 32
+	Height 64
+}
+
+Actor WolfDecor_Solid : WolfDecor
+{
+	+SOLID
+}
+
+Actor WolfLight : WolfDecor
+{
+	//$Category Light sources
+}
+
+Actor WolfLight_Solid : WolfLight
+{
+	+SOLID
+}
+
+Actor WolfGore : WolfDecor
+{
+	//$Category Decoration
+}
+
+Actor WolfGore_Solid : WolfGore
+{
+	+SOLID
+}
+
+actor Decor_GreenCeilingLight : WolfLight 10010 // 34
+{
+	Tag "_ Green Ceiling Light"
+	States
+	{
+		Spawn:
+			CLT1 A -1
+			stop
+	}
+}
+
+actor Decor_Chandelier : WolfLight 10011 // 2006
+{
+	Tag "_ Chandelier"
+	States
+	{
+		Spawn:
+			CHAN A -1
+			stop
+	}	
+}
+
+actor Decor_Plant : WolfDecor_Solid 10012 // 54
+{
+	Tag "_ Plant"
+	States
+	{
+		Spawn:
+			PLAN A -1
+			stop
+	}
+}
+
+actor Decor_Basket : WolfDecor 10013 // 2005
+{
+	Tag "_ Basket"
+	States
+	{
+		Spawn:
+			BASK A -1
+			stop
+	}
+}
+
+actor Decor_Table : WolfDecor_Solid 10014 // 33
+{
+	Tag "_ Table"
+	States
+	{
+		Spawn:
+			TBL2 A -1
+			stop
+	}
+}
+
+actor Decor_WellEmpty : WolfDecor_Solid 10015 // 32
+{
+	Tag "_ Well Empty"
+	States
+	{
+		Spawn:
+			WEL1 A -1
+			stop
+	}
+}
+
+actor Decor_WellFull : WolfDecor_Solid 10016 // 31
+{
+	Tag "_ Well Full"
+	States
+	{
+		Spawn:
+			WEL2 A -1
+			stop
+	}
+}
+
+actor Decor_WaterPuddle : WolfDecor 10017 // 2003
+{
+	Tag "_ Water Puddle"
+	States
+	{
+		Spawn:
+			WATR A -1
+			stop
+	}
+}
+
+actor Decor_Barrel : WolfDecor_Solid 10018 // 26
+{
+	Tag "_ Barrel"
+	States
+	{
+		Spawn:
+			BAR2 A -1
+			stop
+	}
+}
+
+actor Decor_ArmorStatue : WolfDecor_Solid 10019 // 43
+{
+	Tag "_ Armor Statue"
+	States
+	{
+		Spawn:
+			ARMR A -1
+			stop
+	}
+}
+
+actor Decor_TableAndChairs : WolfDecor_Solid 10020 // 30
+{
+	Tag "_ Table and Chairs"
+	States
+	{
+		Spawn:
+			TBL1 A -1
+			stop
+	}
+}
+
+actor Decor_Vase : WolfDecor_Solid 10021 // 25
+{
+	Tag "_ Vase"
+	States
+	{
+		Spawn:
+			VASE A -1
+			stop
+	}
+}
+
+actor Decor_GreenBarrel : WolfDecor_Solid 10022 // 27
+{
+	Tag "_ Green Barrel"
+	States
+	{
+		Spawn:
+			GBAR A -1
+			stop
+	}
+}
+
+actor Decor_Plant2 : WolfDecor_Solid 10023 // 47
+{
+	Tag "_ Plant 2"
+	States
+	{
+		Spawn:
+			PLN2 A -1
+			stop
+	}
+}
+
+actor Decor_YellowLamp : WolfLight_Solid 10024 // 45
+{
+	Tag "_ Yellow Lamp"
+	States
+	{
+		Spawn:
+			YLMP A -1
+			stop
+	}
+}
+
+actor Decor_Flag : WolfDecor_Solid 10025 // 28
+{
+	Tag "_ Flag"
+	States
+	{
+		Spawn:
+			FLAG A -1
+			stop
+	}
+}
+
+actor Decor_Sink : WolfDecor_Solid 10026 // 36
+{
+	Tag "_ Sink"
+	States
+	{
+		Spawn:
+			SINK A -1
+			stop
+	}
+}
+
+actor Decor_HangingSkeleton : WolfGore_Solid 10027 // 37
+{
+	Tag "_ Hanging Skeleton"
+	States
+	{
+		Spawn:
+			SKLH A -1
+			stop
+	}
+}
+
+actor Decor_Skeleton : WolfGore 10028 // 38
+{
+	Tag "_ Skeleton"
+	States
+	{
+		Spawn:
+			BON2 A -1
+			stop
+	}
+}
+
+actor Decor_Bones : WolfGore 10029 // 13
+{
+	Tag "_ Bones"
+	Radius 32
+	Height 64
+	States
+	{
+		Spawn:
+			BON1 A -1
+			stop
+	}
+}
+
+actor Decor_HangingPots : WolfDecor 10030 // 2004
+{
+	Tag "_ Hanging Pots"
+	States
+	{
+		Spawn:
+			POT1 A -1
+			stop
+	}
+}
+
+actor Decor_HangingPots2 : WolfDecor 10031 // 2028
+{
+	Tag "_ Hanging Pots 2"
+	States
+	{
+		Spawn:
+			POT2 A -1
+			stop
+	}
+}
+
+/* Moved to items.
+actor Decor_BloodyBones : WolfDecor 10032 // 2047
+{
+	States
+	{
+		Spawn:
+			SKBL A -1
+			stop
+	}
+}
+*/
+
+actor Decor_StoneColumn : WolfDecor_Solid 10033 // 48
+{
+	Tag "_ Stone Column"
+	States
+	{
+		Spawn:
+			COLM A -1
+			stop
+	}
+}
+
+actor Decor_Cage : WolfDecor_Solid 10034 // 42
+{
+	Tag "_ Cage"
+	States
+	{
+		Spawn:
+			CAG1 A -1
+			stop
+	}
+}
+
+actor Decor_SkeletonCage : WolfGore_Solid 10035 // 41
+{
+	Tag "_ Skeleton Cage"
+	States
+	{
+		Spawn:
+			CAG2 A -1
+			stop
+	}
+}
+
+/* Moved to Items
+actor Decor_BloodPuddle : WolfDecor 10036 // 82
+{
+	States
+	{
+		Spawn:
+			BLOD A -1
+			stop
+	}
+}
+*/
+
+actor Decor_Cot : WolfDecor_Solid 10037 // 8
+{
+	Tag "_ Cot"
+	States
+	{
+		Spawn:
+			COTT A -1
+			stop
+	}
+}
+
+actor Decor_Vines : WolfDecor 10038 // 70
+{
+	Tag "_ Vines"
+	States
+	{
+		Spawn:
+			VINE A -1
+			stop
+	}
+}
+
+actor Decor_CallApogeeSayAARDWOLF : WolfDecor 10039
+{
+	Tag "_ Call Apogee"
+	States
+	{
+		Spawn:
+			CASA A -1
+			stop
+	}
+}
+
+actor Decor_Furnace : WolfDecor_Solid 10040 // 55
+{
+	Tag "_ Furnace"
+	States
+	{
+		Spawn:
+			OVEN A -1
+			stop
+	}
+}
+
+actor Decor_Spears : WolfDecor_Solid 10041 // 56
+{
+	Tag "_ Spears"
+	States
+	{
+		Spawn:
+			SPER A -1
+			stop
+	}
+}
+
+actor Decor_BonesLittleBlood : WolfGore 10042 // 2035
+{
+	Tag "_ Bones with Blood"
+	States
+	{
+		Spawn:
+			BON3 A -1
+			stop
+	}
+}
+
+actor Decor_DryBones : WolfGore 10043 // 44
+{
+	Tag "_ Dry Bones"
+	States
+	{
+		Spawn:
+			BON4 A -1
+			stop
+	}
+}
+
+actor Decor_DryBones2 : WolfGore 10044 // 57
+{
+	Tag "_ Dry Bones 2"
+	States
+	{
+		Spawn:
+			BON5 A -1
+			stop
+	}
+}
+
+actor Decor_DeadGuard : WolfGore 10045 // 18
+{
+	//$Category Decoration
+	Tag "_ Dead Guard"
+	States
+	{
+		Spawn:
+			GARD N -1
+			stop
+	}
+}

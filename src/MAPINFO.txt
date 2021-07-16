@@ -1,0 +1,265 @@
+clearepisodes
+
+gameinfo
+{
+	titlemusic = "SILENCE"
+	borderflat = "tile"
+	quitsound = "menu/quitsound"
+	infopage = "CREDIT"
+	finalemusic = "URAHERO"
+	finaleflat = "FLAT19"
+	finalepage = "CREDIT"
+	QuitMessages = "$QUITMSG0","$QUITMSG1","$QUITMSG2","$QUITMSG3","$QUITMSG4","$QUITMSG5","$QUITMSG6","$QUITMSG7","$QUITMSG8","$QUITMSG9","$QUITMSG10","$QUITMSG11","$QUITMSG12","$QUITMSG13","$QUITMSG14","$QUITMSG15","$QUITMSG16","$QUITMSG17","$QUITMSG18","$QUITMSG19","$QUITMSG20","$QUITMSG21","$QUITMSG22","$QUITMSG23"
+
+	cursorpic = "wolfcurs"
+    menufontcolor_title = "Untranslated"
+    menufontcolor_header = "Untranslated"
+}
+
+episode e1m1
+{
+  picname = "M_EP1"
+  name = "Escape from Wolfenstein"
+  key = "1"
+}
+
+episode e2m1
+{
+  picname = "M_EP2"
+  name = "Operation: Eisenfaust"
+  key = "2"
+}
+
+episode e3m1
+{
+  picname = "M_EP3"
+  name = "Die, Fuhrer, Die!"
+  key = "3"
+}
+
+episode e4m1
+{
+  picname = "M_EP4"
+  name = "A Dark Secret"
+  key = "4"
+}
+
+episode e5m1
+{
+  picname = "M_EP5"
+  name = "Trail of the Madman"
+  key = "5"
+}
+
+episode e6m1
+{
+  picname = "M_EP6"
+  name = "Confrontation"
+  key = "6"
+}
+/*
+episode e7m1
+{
+  picname = "M_EP7"
+  name = "Spear of Destiny"
+  key = "7"
+}
+*/
+defaultmap
+{
+  exitpic = "$in_epi"
+}
+
+// ----- Episode 1 -----
+map e1m1 "Floor 1"
+{
+  levelnum = 1
+  next = "e1m2"
+  secretnext = "e1m10"
+  music = "GETTHEM"
+  intermusic = D_INTER
+}
+
+map e1m2 "Floor 2"
+{
+  levelnum = 2
+  next = "e1m3"
+  secretnext = "e1m3"
+  music = "SEARCHN"
+  intermusic = D_INTER
+}
+
+map e1m3 "Floor 3"
+{
+  levelnum = 3
+  next = "e1m4"
+  secretnext = "e1m4"
+  music = POW
+  intermusic = D_INTER
+}
+
+map e1m4 "Floor 4"
+{
+  levelnum = 4
+  next = "e1m5"
+  secretnext = "e1m5"
+  music = SUSPENSE
+  intermusic = D_INTER
+}
+
+map e1m5 "Floor 5"
+{
+  levelnum = 5
+  next = "e1m6"
+  secretnext = "e1m6"
+  music = GETTHEM
+  intermusic = D_INTER
+}
+
+map e1m6 "Floor 6"
+{
+  levelnum = 6
+  next = "e1m7"
+  secretnext = "e1m7"
+  music = SEARCHN
+  intermusic = D_INTER
+}
+
+map e1m7 "Floor 7"
+{
+  levelnum = 7
+  next = "e1m8"
+  secretnext = "e1m8"
+  music = POW
+  intermusic = D_INTER
+}
+
+map e1m8 "Floor 8"
+{
+  levelnum = 8
+  next = "e1m9"
+  secretnext = "e1m9"
+  music = SUSPENSE
+  intermusic = D_INTER
+}
+
+map e1m9 "Floor 9"
+{
+  levelnum = 9
+  music = "WARMARCH"
+  next = EndPic, "ep1end"
+  secretnext = EndPic, "ep1end"
+  intermusic = D_INTER
+}
+
+map e1m10 "Floor 10"
+{
+  levelnum = 10
+  next = "e1m2"
+  secretnext = "e1m2"
+  music = CORNER
+  intermusic = D_INTER
+}
+
+// ----- Episode 2 -----
+map e2m1 "Floor 1"
+{
+  levelnum = 1
+  next = "e2m2"
+  secretnext = "e2m10"
+  music = NAZI_OMI
+  intermusic = D_INTER
+}
+
+map e2m2 "Floor 2"
+{
+  levelnum = 2
+  next = "e2m3"
+  secretnext = "e2m3"
+  music = PREGNANT
+  intermusic = D_INTER
+}
+
+map e2m3 "Floor 3"
+{
+  levelnum = 3
+  next = "e2m4"
+  secretnext = "e2m4"
+  music = GOINGAFT
+  intermusic = D_INTER
+}
+
+map e2m4 "Floor 4"
+{
+  levelnum = 4
+  next = "e2m5"
+  secretnext = "e2m5"
+  music = HEADACHE
+  intermusic = D_INTER
+}
+
+map e2m5 "Floor 5"
+{
+  levelnum = 5
+  next = "e2m6"
+  secretnext = "e2m6"
+  music = NAZI_OMI
+  intermusic = D_INTER
+}
+
+map e2m6 "Floor 6"
+{
+  levelnum = 6
+  next = "e2m7"
+  secretnext = "e2m7"
+  music = PREGNANT
+  intermusic = D_INTER
+}
+
+map e2m7 "Floor 7"
+{
+  levelnum = 7
+  next = "e2m8"
+  secretnext = "e2m8"
+  music = HEADACHE
+  intermusic = D_INTER
+}
+
+map e2m8 "Floor 8"
+{
+  levelnum = 8
+  next = "e2m9"
+  secretnext = "e2m9"
+  music = GOINGAFT
+  intermusic = D_INTER
+}
+
+map e2m9 "Floor 9"
+{
+  levelnum = 9
+  music = "WARMARCH"
+  next = EndPic, "ep2end"
+  secretnext = EndPic, "ep2end"
+  intermusic = D_INTER
+  
+  specialaction = "DrSchabbs","Exit_Normal"
+}
+
+map e2m10 "Floor 10"
+{
+  levelnum = 10
+  next = "e2m2"
+  secretnext = "e2m2"
+  music = DUNGEON
+  intermusic = D_INTER
+}
+
+// ----- Episode 3 -----
+map e3m1 "Floor 1"
+{
+  levelnum = 1
+  next = "e3m2"
+  secretnext = "e3m2"
+  music = INTROCW3
+  intermusic = D_INTER
+}

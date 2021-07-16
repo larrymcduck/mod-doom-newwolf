@@ -1,0 +1,28 @@
+[enu default]
+// Wolf 3D
+QUITMSG0 = "Dost thou wish to\nleave with such hasty\nabandon?";
+QUITMSG1 = "For guns and glory, press N.\nFor work and worry, Press Y.";
+QUITMSG2 = "You are at an intersection.\nA signs says, 'Press y to quit'";
+QUITMSG3 = "Press N if you are brave.\nPress Y to cower in shame.";
+QUITMSG4 = "Press N to save the world.\nPress Y to abandon it in\nits hour of need.";
+QUITMSG5 = "Press N for more carnage.\nPress Y to be a weenie.";
+QUITMSG6 = "Heroes, press N.\nWimps, press Y.";
+QUITMSG7 = "Chickening out...\nAlready?";
+QUITMSG8 = "Dost thou wish to\nleave with such hasty\nabandon?";
+QUITMSG9 = "For guns and glory, press N.\nFor work and worry, Press Y.";
+QUITMSG10 = "You are at an intersection.\nA signs says, 'Press y to quit'";
+QUITMSG11 = "Press N if you are brave.\nPress Y to cower in shame.";
+QUITMSG12 = "Press N to save the world.\nPress Y to abandon it in\nits hour of need.";
+QUITMSG13 = "Press N for more carnage.\nPress Y to be a weenie.";
+QUITMSG14 = "Heroes, press N.\nWimps, press Y.";
+// Spear of Destiny
+QUITMSG15 = "Depressing the Y key means\nyou must return to the\nhumdrum workday world.";
+QUITMSG16 = "Sure. Fine. Quit.\nSee if we care.\nGet it over with.\nPress Y.";
+QUITMSG17 = "Heros don't quit, but\ngo ahead and press Y\nif you aren't one.";
+QUITMSG18 = "I think you had better\nplay some more. Please\npress N...please?";
+QUITMSG19 = "Press Y to quit,\nor press N to enjoy\nmore violent diversion.";
+QUITMSG20 = "Sure you don't want to\nwant a few more\nproductive hours?";
+QUITMSG21 = "If you are tough, press N.\nIf not, press Y daintily.";
+QUITMSG22 = "I'm thinkin' that\nyou might wanna press N\nto play more. You do it.";
+QUITMSG23 = "Hey, quit or play,\nY or N:\nit's your choice.";
+NIGHTMARE = "Good luck.\nPress Y to enter Nightmare Mode.";

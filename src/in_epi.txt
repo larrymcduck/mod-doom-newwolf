@@ -1,0 +1,8 @@
+Background INTERPC3
+PIC 0 0 INTERPIC
+
+Animation 0 0 22
+{
+	INTERPIC
+	INTERPC2
+}

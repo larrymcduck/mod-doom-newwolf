@@ -1,0 +1,19 @@
+[DoorNormal
+ Door 1
+ 0	dooropen
+ 1	doorclose
+ 2	dooropen
+ 3	doorclose
+]
+
+:Doors
+	door		1
+	play		dooropen
+	nostopcutoff
+end
+
+:Secret
+	door		2
+	play		doorsecret
+	nostopcutoff
+end

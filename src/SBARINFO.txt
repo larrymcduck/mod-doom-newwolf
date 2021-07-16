@@ -1,0 +1,90 @@
+height 40;
+monospacefonts true, "0";
+
+statusbar fullscreen, fullscreenoffsets // ZDoom HUD
+{
+  PlayerClass BJ
+  {
+	//health
+	drawimage "MEDKA0", 20, -2, centerbottom;
+	drawnumber 3, FULFONT_WOLF, WolfBigNumberBlue, health, drawshadow, 90, -20;
+
+	//ammo
+	drawimage ammoicon1, -16, -24, centerbottom;
+	drawnumber 2, FULFONT_WOLF, WolfBigNumberBlue, ammo1, drawshadow, -30, -39;
+	drawimage "TBOXA0", -14, -4, centerbottom;
+	drawnumber 6, FULFONT_WOLF, WolfBigNumberBlue, Wolf_Score, drawshadow, -30, -20;
+
+	gamemode deathmatch
+	{
+		drawnumber 2147483647, FULFONT_WOLF, WolfBigNumberBlue, frags, drawshadow, -3, 1;
+	}
+	gamemode singleplayer, cooperative, teamgame
+	{
+		InInventory Key_Gold, 1
+		{
+			drawimage "keygoldL", -14, 4;
+		}
+		InInventory Key_Silver, 1
+		{
+			drawimage "keysilvL", -14, 30;
+		}
+	}
+  }
+}
+
+statusbar normal // Standard Doom Status bar
+{
+  PlayerClass BJ
+  {
+	drawimage "STBAR", 0, 160;
+	drawnumber 3, HUDFONT_WOLF, untranslated, health, 192, 176;
+	drawnumber 2, HUDFONT_WOLF, untranslated, ammo1, 232, 176;
+	drawnumber 6, HUDFONT_WOLF, untranslated, Wolf_Score, 96, 176;
+	drawnumber 2, HUDFONT_WOLF, untranslated, GlobalVar 1, 32, 176;
+
+	//keys
+	InInventory Key_Gold, 1
+	{
+		drawimage "keygold", 240, 164;
+	}
+	InInventory Key_Silver, 1
+	{
+		drawimage "keysilv", 240, 180;
+	}
+	
+	IsSelected WolfKnife
+	{
+		drawimage "knifehud", 255, 168;
+	}
+	IsSelected WolfPistol
+	{
+		drawimage "pistol", 255, 168;
+	}
+	IsSelected WolfMachineGun
+	{
+		drawimage "machine", 255, 168;
+	}
+	IsSelected WolfChaingun
+	{
+		drawimage "chaingun", 255, 168;
+	}
+	
+	gamemode deathmatch, teamgame
+	{
+		drawnumber 3, HUDFONT_WOLF, untranslated, frags, 131, 176;
+	}
+	gamemode cooperative, singleplayer
+	{
+		drawimage "STARMS", 100, 160;
+		drawswitchableimage weaponslot 2, "STGNUM2", "STYSNUM2", 105, 183; 
+		drawswitchableimage weaponslot 3, "STGNUM3", "STYSNUM3", 115, 183;
+		drawswitchableimage weaponslot 4, "STGNUM4", "STYSNUM4", 125, 183;
+	}
+
+	drawselectedinventory alternateonempty, INDEXFONT, 143, 168
+	{
+		drawmugshot "BJF", 7, disablerampage, disablepain, xdeathface, animatedgodmode, 134, 165;
+	}
+  }
+}

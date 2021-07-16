@@ -1,0 +1,57 @@
+ACTOR BJ : PlayerPawn
+{
+	Speed 1
+	Health 100
+	Radius 16
+	Height 64
+	Mass 100000
+	PainChance 255
+
+	PainSound "player/null"
+	Player.SoundClass "BJ"
+	Player.ColorRange 112, 127
+	Player.DisplayName "BJ"
+	Player.CrouchSprite "PLYC"
+	Player.Face "BJF"
+	Player.StartItem "WolfPistol"
+	Player.StartItem "WolfKnife"
+	Player.StartItem "WolfClip", 8
+	Player.ViewHeight 32
+	Player.WeaponSlot 1, WolfKnife
+	Player.WeaponSlot 2, WolfPistol
+	Player.WeaponSlot 3, WolfMachineGun
+	Player.WeaponSlot 4, WolfChaingun
+	Player.WeaponSlot 5, NULL
+	Player.WeaponSlot 6, NULL
+	Player.WeaponSlot 7, NULL
+	Player.WeaponSlot 8, NULL
+	
+	States
+	{
+	Spawn:
+		PLAY H 1
+		Loop
+	See:
+		PLAY AAAABBBBCCCCDDDD 1
+		Loop
+	Melee:
+	Missile:
+		PLAY EF 5
+		Goto Spawn
+	Pain:
+		PLAY G 8 A_Pain
+		Goto Spawn
+	XDeath:
+		BJDI A 4 A_PlayerScream
+		BJDI B 4 A_NoBlocking
+		BJDI CD 4
+		BJDI E -1
+		Stop
+	Death:
+		BJDI A 4 A_PlayerScream
+		BJDI B 4 A_NoBlocking
+		BJDI CD 4
+		BJDI E -1
+		Stop
+	}
+}
